@@ -6,11 +6,10 @@
 //Note: This project took a while because setting up c# took a while and I had other projects I was working on
 /*---------------------------------------------------------------------*/
 //Setup
-using System;
-using System.ComponentModel;
-using System.Data;
-using System.Net.NetworkInformation;
-using System.Threading;
+using Microsoft.Win32.SafeHandles;
+using System; //Required for basically everything
+using System.Runtime.CompilerServices;
+using System.Threading; //Required for Thread.Sleep()
 public class Program
 {
     //Note: All lowercase letter get converted to capital letters.
@@ -43,6 +42,8 @@ public class Program
     static string input;
     static char[] input_array;
     static int Lines;
+    static int Secret = 0; //0 = false 1 = true
+    static int SecretDiscovered = 0; //Same thing as the one above
     static void Main()
     {
         /*---------------------------------------------------------------------*/
@@ -64,17 +65,19 @@ public class Program
             Console.Clear();
             Console.WriteLine($"What do you want to do.");
             Console.WriteLine($"1) Generate minecraft text");
-            Console.WriteLine($"1) Settings");
+            Console.WriteLine($"2) Settings");
             Console.WriteLine($"3) Exit");
             string answer = Console.ReadLine();
             Console.Clear();//Clear terminal
             if (answer == "1")
             {
+                Secret = 1;
                 Console.Write("Enter text:");
                 input = Console.ReadLine();
                 input_array = input.ToCharArray();
                 Console.Clear();
                 PrintText();
+
             }
             else if (answer == "2")
             {
@@ -89,8 +92,8 @@ public class Program
             }
             else
             {
-                Console.WriteLine($"Invalid answer");
-                Console.Write($"Press enter to continue.");
+                Console.WriteLine($"Invalid input.");
+                Console.Write($"Press any key to continue.");
                 Console.ReadKey();
             }
 
@@ -99,16 +102,96 @@ public class Program
     //Method for accessing settings
     static void Settings()
     {
-        Console.WriteLine($"Which setting do you want to change?");
-        Console.WriteLine($"1) Background colour.");
-        Console.WriteLine($"2) Exit settings");
-        string setting = Console.ReadLine();
-        Console.Clear();
-        if (setting == "1")
+        while (true)
         {
-            Console.WriteLine($"Select background colour.");
-        }
+            Console.WriteLine($"Which setting do you want to change?");
+            Console.WriteLine($"1) Background colour.");
+            Console.WriteLine($"2) Exit settings");
+            string setting = Console.ReadLine();
+            Console.Clear();
+            if (setting == "1")
+            {
+                Console.Clear();
+                Console.WriteLine($"Select background colour.");
+                Console.WriteLine($"1) Default (Black)");
+                Console.WriteLine($"2) Blue");
+                Console.WriteLine($"3) Green");
+                Console.WriteLine($"4) Magenta");
+                if (SecretDiscovered == 1)
+                {
+                    Console.WriteLine($"5) Cyan");
+                }
+                else
+                {
+                    Console.WriteLine($"5) ???????");
+                }
 
+                string colour = Console.ReadLine();
+                Console.Clear();
+                if (colour == "1")
+                {
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.Clear();
+                    Console.WriteLine($"Colour successfully set to default (black).");
+                }
+                else if (colour == "2")
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                    Console.Clear();
+                    Console.WriteLine($"Colour successfully set to blue.");
+                }
+                else if (colour == "3")
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.Clear();
+                    Console.WriteLine($"Colour successfully set to green");
+                }
+                else if (colour == "4")
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                    Console.Clear();
+                    Console.WriteLine($"Colour successfully set to magenta.");
+
+                }
+
+                else if (colour == "5")
+                {
+                    if (Secret == 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.Clear();
+                        if (SecretDiscovered == 0)
+                        {
+                            Console.WriteLine($"Cyan background colour unlocked!!");
+                            SecretDiscovered = 1;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Background colour successfully set to cyan.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You haven't unlocked this background colour yet.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid input.");
+                    Console.WriteLine($"Press any key to enter.");
+                    Console.ReadKey();
+                }
+                Console.WriteLine($"Press any key to continue.");
+                Console.ReadKey();
+                Console.Clear();
+
+            }
+            if (setting == "2")
+            {
+                break;
+            }
+            
+        }
     }
     //Method for printing the minecraft text
     static void PrintText()
