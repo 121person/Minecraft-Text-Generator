@@ -12,7 +12,6 @@ using System.Threading; //Required for Thread.Sleep()
 public class Program
 {
     //Variables for pixel art
-    static string s = "\u2800"; //Unicode braille space
     static string b = "\u2588"; //Unicode block █
 
     //Note: All lowercase letter get converted to capital letters.
@@ -485,7 +484,7 @@ public class Program
             }
             else if (character == ' ')
             {
-                Console.Write($"{s}{s}{s}{s}");
+                Console.Write($"    ");
             }
             else
             {
@@ -782,7 +781,7 @@ public class Program
             }
             else if (character == ' ')
             {
-                Console.Write($"{s}{s}{s}{s}");
+                Console.Write($"    ");
             }
             else
             {
@@ -801,7 +800,7 @@ public class Program
             }
             else if (character == ' ')
             {
-                Console.Write($"{s}{s}{s}{s}");
+                Console.Write($"    ");
             }
             else if (character == 'B' || character == 'b')
             {
@@ -1093,7 +1092,7 @@ public class Program
             }
             else if (character == ' ')
             {
-                Console.Write($"{s}{s}{s}{s}");
+                Console.Write($"    ");
             }
             else if (character == 'B' || character == 'b')
             {
@@ -1385,7 +1384,7 @@ public class Program
             }
             else if (character == ' ')
             {
-                Console.Write($"{s}{s}{s}{s}");
+                Console.Write($"    ");
             }
             else if (character == 'B' || character == 'b')
             {
