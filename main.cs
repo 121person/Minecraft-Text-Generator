@@ -7,34 +7,36 @@
 /*---------------------------------------------------------------------*/
 //Setup
 using System;
+using System.ComponentModel;
 using System.Data;
+using System.Net.NetworkInformation;
 using System.Threading;
 public class Program
 {
     //Note: All lowercase letter get converted to capital letters.
-    //Note: For now each charcter's row is just itself but in future the pixel art for each charcter will be added. (20/07/2025)
-    
+    //Note: For now each charcter's row is just itself but in future the pixel art for each charcter will be added. (This note was left 20/07/2025)
+
     //
     static string[] CapitalLetters1 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Note: For each character it needs to print 1 line at a time (This is the top row)
     static string[] CapitalLetters2 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Row 2 for letters
     static string[] CapitalLetters3 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Row 3 for letters
     static string[] CapitalLetters4 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Row 4 for letters
     static string[] CapitalLetters5 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Row 5 for letters
-                                   
+
     //Arrays for numbers
     static string[] Numbers1 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };//Row 1 for numbers
     static string[] Numbers2 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };//Row 2 for numbers
     static string[] Numbers3 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };//Row 3 for numbers
     static string[] Numbers4 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };//Row 4 for numbers
     static string[] Numbers5 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };//Row 5 for numbers
-                                 
+
     //Arrays for symbols
     static string[] Symbols1 = { " ", ".", ",", ">", "<", "?", "/", "\"", "\'", ":", ";", "[", "]", "{", "}", "(", ")", "|", "!", "@", "#", "$", "%", "^", "&", "*", "_", "-", "+", "=", "`", "~", "\\" };//Row 1 for symbols
     static string[] Symbols2 = { " ", ".", ",", ">", "<", "?", "/", "\"", "\'", ":", ";", "[", "]", "{", "}", "(", ")", "|", "!", "@", "#", "$", "%", "^", "&", "*", "_", "-", "+", "=", "`", "~", "\\" };//Row 2 for symbols
     static string[] Symbols3 = { " ", ".", ",", ">", "<", "?", "/", "\"", "\'", ":", ";", "[", "]", "{", "}", "(", ")", "|", "!", "@", "#", "$", "%", "^", "&", "*", "_", "-", "+", "=", "`", "~", "\\" };//Row 3 for symbols
     static string[] Symbols4 = { " ", ".", ",", ">", "<", "?", "/", "\"", "\'", ":", ";", "[", "]", "{", "}", "(", ")", "|", "!", "@", "#", "$", "%", "^", "&", "*", "_", "-", "+", "=", "`", "~", "\\" };//Row 4 for symbols
     static string[] Symbols5 = { " ", ".", ",", ">", "<", "?", "/", "\"", "\'", ":", ";", "[", "]", "{", "}", "(", ")", "|", "!", "@", "#", "$", "%", "^", "&", "*", "_", "-", "+", "=", "`", "~", "\\" };//Row 5 for symbols
-    
+
     //Variables that aren't arrays
     static bool run = true;
     static char character = 'x';
@@ -46,24 +48,67 @@ public class Program
         /*---------------------------------------------------------------------*/
         //Basic intro
         Console.WriteLine("This is the minecraft text generator.");
-        Thread.Sleep(1000);
+        Thread.Sleep(100);
         Console.WriteLine("It will generate minecraft-style text.");
+        Thread.Sleep(100);
         Console.WriteLine("Type what you want it to say then press enter.");
+        Thread.Sleep(100);
         Console.WriteLine("Press any key to continue.");
+        Thread.Sleep(100);
         Console.ReadKey();
         Console.WriteLine($"");
         /*---------------------------------------------------------------------*/
         //Main loop
         while (run)
         {
-            Console.Write("Enter text:");
-            input = Console.ReadLine();
-            input_array = input.ToCharArray();
             Console.Clear();
-            PrintText();
+            Console.WriteLine($"What do you want to do.");
+            Console.WriteLine($"1) Generate minecraft text");
+            Console.WriteLine($"1) Settings");
+            Console.WriteLine($"3) Exit");
+            string answer = Console.ReadLine();
+            Console.Clear();//Clear terminal
+            if (answer == "1")
+            {
+                Console.Write("Enter text:");
+                input = Console.ReadLine();
+                input_array = input.ToCharArray();
+                Console.Clear();
+                PrintText();
+            }
+            else if (answer == "2")
+            {
+                Settings();
+            }
+            else if (answer == "3")
+            {
+                Console.WriteLine($"Thank you for using the minecraft text generator.");
+                Console.WriteLine($"Press any key to exit.");
+                Console.ReadKey();
+                run = false;
+            }
+            else
+            {
+                Console.WriteLine($"Invalid answer");
+                Console.Write($"Press enter to continue.");
+                Console.ReadKey();
+            }
 
         }
-        //Add ending
+    }
+    //Method for accessing settings
+    static void Settings()
+    {
+        Console.WriteLine($"Which setting do you want to change?");
+        Console.WriteLine($"1) Background colour.");
+        Console.WriteLine($"2) Exit settings");
+        string setting = Console.ReadLine();
+        Console.Clear();
+        if (setting == "1")
+        {
+            Console.WriteLine($"Select background colour.");
+        }
+
     }
     //Method for printing the minecraft text
     static void PrintText()
@@ -1513,12 +1558,13 @@ public class Program
                 Console.Write($"Error");
             }
         }
-        Lines = 7;
-        Clear2();
-
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine($"You can now highlight and copy this text.");
+        Console.Write($"Press any key to continue when you are done.");
+        Console.ReadKey();
     }
-    //Method for clearing screen
-    static void Clear2()
+    static void Clear2() //Experiment method
     {
         int defaultCalibration = Console.WindowHeight;
         int calibration = defaultCalibration - Lines;
