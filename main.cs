@@ -58,7 +58,7 @@ public class Program
         {
             Console.Write("Enter text:");
             input = Console.ReadLine();
-            char[] input_array = input.ToCharArray();
+            input_array = input.ToCharArray();
             Console.Clear();
             PrintText();
 
