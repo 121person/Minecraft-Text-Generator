@@ -1,22 +1,26 @@
 //Minecraft Text Generator
 //Created: 05/07/2025
-//Last Updated: 04/08/2025
+//Last Updated: 09/08/2025
 //This app takes user input and converts it to the minecraft chat font.
 //Made by: Ayan Adhikari
 //Note: This project took a while because setting up c# took a while and I had other projects I was working on
 /*---------------------------------------------------------------------*/
 //Setup
-using Microsoft.Win32.SafeHandles;
 using System; //Required for basically everything
-using System.Runtime.CompilerServices;
 using System.Threading; //Required for Thread.Sleep()
+//Note these comments saying what the directiives are required for exists because visual studio community keeps adding random directives
 public class Program
 {
+    //Variables for pixel art
+    static string s = "\u2800"; //Unicode braille space
+    static string b = "\u2588"; //Unicode block █
+
     //Note: All lowercase letter get converted to capital letters.
     //Note: For now each charcter's row is just itself but in future the pixel art for each charcter will be added. (This note was left 20/07/2025)
-
-    //
-    static string[] CapitalLetters1 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Note: For each character it needs to print 1 line at a time (This is the top row)
+    //Note: The pixel art is being added. (This note was left 09/08/2025)
+    
+    //Arrays for letters
+    static string[] CapitalLetters1 = { "", "{}", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Note: For each character it needs to print 1 line at a time (This is the top row)
     static string[] CapitalLetters2 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Row 2 for letters
     static string[] CapitalLetters3 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Row 3 for letters
     static string[] CapitalLetters4 = { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//Row 4 for letters
@@ -479,6 +483,10 @@ public class Program
             {
                 Console.Write($"{Symbols1[32]}");
             }
+            else if (character == ' ')
+            {
+                Console.Write($"{s}{s}{s}{s}");
+            }
             else
             {
                 Console.Write($"Error");
@@ -772,6 +780,10 @@ public class Program
             {
                 Console.Write($"{Symbols2[32]}");
             }
+            else if (character == ' ')
+            {
+                Console.Write($"{s}{s}{s}{s}");
+            }
             else
             {
                 Console.Write($"Error");
@@ -786,6 +798,10 @@ public class Program
             if (character == 'A' || character == 'a')
             {
                 Console.Write($"{CapitalLetters3[1]}");
+            }
+            else if (character == ' ')
+            {
+                Console.Write($"{s}{s}{s}{s}");
             }
             else if (character == 'B' || character == 'b')
             {
@@ -1075,6 +1091,10 @@ public class Program
             {
                 Console.Write($"{CapitalLetters4[1]}");
             }
+            else if (character == ' ')
+            {
+                Console.Write($"{s}{s}{s}{s}");
+            }
             else if (character == 'B' || character == 'b')
             {
                 Console.Write($"{CapitalLetters4[2]}");
@@ -1362,6 +1382,10 @@ public class Program
             if (character == 'A' || character == 'a')
             {
                 Console.Write($"{CapitalLetters5[1]}");
+            }
+            else if (character == ' ')
+            {
+                Console.Write($"{s}{s}{s}{s}");
             }
             else if (character == 'B' || character == 'b')
             {
@@ -1654,4 +1678,5 @@ public class Program
     }
 
 }
-//Hi
+//Credits
+//Credit to: https://www.gamergeeks.net/apps/pixel/letter-text-generator/minecraft for providing the pixel art used
